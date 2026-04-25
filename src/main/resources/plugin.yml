@@ -1,0 +1,33 @@
+name: AetherTreeSystem
+version: ${project.version}
+main: me.yansproject.aethertree.AetherTreeSystem
+api-version: "1.21"
+author: YansProject
+description: Premium Tree Feller System with Hold-to-Chop Mechanic
+website: github.com https://github.com/scripeteren
+
+commands:
+  aethertree:
+    description: Main command for AetherTreeSystem
+    usage: /<command> [reload|toggle|stats|help]
+    aliases: [at, timber, treefeller]
+
+permissions:
+  aethertree.use:
+    description: Allows using the tree feller system
+    default: true
+  aethertree.admin:
+    description: Allows admin commands (reload, etc)
+    default: op
+  aethertree.bypass.cooldown:
+    description: Bypass cooldown between chopping
+    default: op
+  aethertree.bypass.durability:
+    description: Bypass axe durability consumption
+    default: false
+  aethertree.bypass.hunger:
+    description: Bypass hunger consumption
+    default: false
+  aethertree.unlimited:
+    description: No tree size limit
+    default: op

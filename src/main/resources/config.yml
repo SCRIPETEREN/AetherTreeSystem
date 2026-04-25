@@ -1,0 +1,335 @@
+#  ═══════════════════════════════════════════════════════════════
+#     _    _____ _____ _   _ _____ ____  _____ ____  _____ _____
+#    / \  | ____|_   _| | | | ____|  _ \|_   _|  _ \| ____| ____|
+#   / _ \ |  _|   | | | |_| |  _| | |_) | | | | |_) |  _| |  _|
+#  / ___ \| |___  | | |  _  | |___|  _ <  | | |  _ <| |___| |___
+# /_/   \_\_____| |_| |_| |_|_____|_| \_\ |_| |_| \_\_____|_____|
+#
+#  AetherTreeSystem v2.0.0 by YansProject
+#  Premium Tree Feller Plugin for Spigot 1.21.1+
+#  Support: github.com https://github.com/scripeteren
+#  ═══════════════════════════════════════════════════════════════
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    GENERAL SETTINGS                         │
+# └─────────────────────────────────────────────────────────────┘
+general:
+  # Enable or disable the entire plugin
+  enabled: true
+  
+  # Debug mode - prints extra info to console
+  debug: false
+  
+  # Check for updates on startup
+  check-updates: true
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    CHOPPING SETTINGS                        │
+# └─────────────────────────────────────────────────────────────┘
+chopping:
+  # Interaction type: RIGHT_CLICK or SNEAK_RIGHT_CLICK
+  interaction-type: "RIGHT_CLICK"
+  
+  # Require player to keep holding right click
+  require-continuous-hold: true
+  
+  # Interval between progress updates (in ticks, 20 ticks = 1 second)
+  progress-interval: 2
+  
+  # Base progress per tick (before axe multiplier)
+  base-progress-per-tick: 1.0
+  
+  # Maximum tree size (total logs). Set to -1 for unlimited
+  max-tree-size: 256
+  
+  # Minimum logs required to be considered a "tree"
+  min-tree-size: 3
+  
+  # Break leaves along with logs
+  break-leaves: true
+  
+  # Leaves break delay (ticks after logs break)
+  leaves-break-delay: 5
+  
+  # Drop items naturally (true) or directly to inventory (false)
+  natural-drops: true
+  
+  # Replant sapling automatically
+  auto-replant: true
+  
+  # Replant delay in ticks
+  replant-delay: 10
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    INVENTORY LOCK [NEW v2.0]                │
+# └─────────────────────────────────────────────────────────────┘
+inventory-lock:
+  # Enable inventory lock while chopping
+  # Player cannot move items in inventory during chopping process
+  enabled: true
+  
+  # Lock hotbar slot switching
+  lock-hotbar: true
+  
+  # Lock inventory clicking (moving items)
+  lock-inventory-click: true
+  
+  # Lock item dropping
+  lock-item-drop: true
+  
+  # Lock offhand swap (F key)
+  lock-offhand-swap: true
+  
+  # Message when trying to interact with locked inventory
+  show-lock-message: true
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    HUNGER SYSTEM [NEW v2.0]                 │
+# └─────────────────────────────────────────────────────────────┘
+hunger:
+  # Enable hunger consumption after chopping
+  enabled: true
+  
+  # Base hunger cost (food level points, max is 20)
+  base-cost: 2
+  
+  # Additional hunger cost per log chopped
+  # Formula: base-cost + (logs * per-log-cost)
+  per-log-cost: 0.1
+  
+  # Maximum hunger that can be consumed in one chop
+  max-cost: 8
+  
+  # Also reduce saturation
+  reduce-saturation: true
+  
+  # Saturation reduction multiplier (relative to hunger cost)
+  saturation-multiplier: 0.5
+  
+  # Minimum food level required to start chopping
+  # Set to 0 to disable this check
+  min-food-level: 2
+  
+  # Message when food level is too low
+  show-hungry-message: true
+  
+  # Cancel chopping if food reaches 0 during process
+  cancel-on-starving: false
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    AXE SETTINGS                             │
+# └─────────────────────────────────────────────────────────────┘
+axes:
+  # Speed multiplier for each axe type
+  # Higher = faster chopping
+  speed-multiplier:
+    WOODEN_AXE: 0.5
+    STONE_AXE: 0.75
+    IRON_AXE: 1.0
+    GOLDEN_AXE: 1.5
+    DIAMOND_AXE: 1.25
+    NETHERITE_AXE: 1.5
+  
+  # Efficiency enchantment bonus per level
+  efficiency-bonus-per-level: 0.15
+  
+  # Consume durability
+  consume-durability: true
+  
+  # Durability cost per log broken
+  durability-per-log: 1
+  
+  # Respect Unbreaking enchantment
+  respect-unbreaking: true
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    COOLDOWN SETTINGS                        │
+# └─────────────────────────────────────────────────────────────┘
+cooldown:
+  # Enable cooldown between tree chopping
+  enabled: true
+  
+  # Cooldown duration in seconds
+  duration: 3
+  
+  # Show cooldown message
+  show-message: true
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    UI / DISPLAY SETTINGS                    │
+# └─────────────────────────────────────────────────────────────┘
+display:
+  # Action bar progress display
+  action-bar:
+    enabled: true
+    
+    # Progress bar style
+    # Available: MODERN, CLASSIC, MINIMAL, BLOCKS, ARROWS
+    style: "MODERN"
+    
+    # Progress bar length (characters)
+    length: 20
+    
+    # Custom characters (for CUSTOM style)
+    filled-char: "█"
+    empty-char: "░"
+    
+    # Colors (use & for color codes)
+    progress-color: "&a"
+    remaining-color: "&7"
+    text-color: "&f"
+    
+    # Show percentage
+    show-percentage: true
+    
+    # Show tree info (log count)
+    show-tree-info: true
+    
+    # Custom format (placeholders: {bar}, {percent}, {logs}, {axe})
+    format: "&8⟨ &a{bar} &8⟩ &f{percent}% &8| &7{logs} logs"
+  
+  # Title display on complete
+  title:
+    enabled: true
+    title: "&a&l✓ SUCCEED!"
+    subtitle: "&7Chopped &f{logs} &7logs"
+    fade-in: 5
+    stay: 20
+    fade-out: 10
+  
+  # Boss bar (alternative to action bar)
+  boss-bar:
+    enabled: false
+    color: "GREEN"
+    style: "SEGMENTED_20"
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    SOUND SETTINGS                           │
+# └─────────────────────────────────────────────────────────────┘
+sounds:
+  # Enable sounds
+  enabled: true
+  
+  # Chopping progress sound
+  chopping:
+    sound: "BLOCK_WOOD_HIT"
+    volume: 0.5
+    pitch: 1.0
+    interval: 4  # Play every X ticks
+  
+  # Tree fall complete sound
+  complete:
+    sound: "ENTITY_PLAYER_LEVELUP"
+    volume: 1.0
+    pitch: 1.5
+  
+  # Cancel/fail sound
+  cancel:
+    sound: "ENTITY_VILLAGER_NO"
+    volume: 0.7
+    pitch: 1.0
+  
+  # Inventory locked sound [NEW v2.0]
+  inventory-locked:
+    sound: "BLOCK_NOTE_BLOCK_BASS"
+    volume: 0.5
+    pitch: 0.5
+  
+  # Hungry sound [NEW v2.0]
+  hungry:
+    sound: "ENTITY_PLAYER_BURP"
+    volume: 0.7
+    pitch: 0.8
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    PARTICLE SETTINGS                        │
+# └─────────────────────────────────────────────────────────────┘
+particles:
+  # Enable particles
+  enabled: true
+  
+  # Chopping particles
+  chopping:
+    type: "CRIT"
+    count: 3
+    
+  # Complete particles
+  complete:
+    type: "VILLAGER_HAPPY"
+    count: 20
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    WORLD SETTINGS                           │
+# └─────────────────────────────────────────────────────────────┘
+worlds:
+  # World filter mode: WHITELIST, BLACKLIST, or DISABLED
+  mode: "DISABLED"
+  
+  # List of worlds
+  list:
+    - "world"
+    - "world_nether"
+    - "world_the_end"
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    PROTECTION SETTINGS                      │
+# └─────────────────────────────────────────────────────────────┘
+protection:
+  # Check WorldGuard regions (if installed)
+  worldguard: true
+  
+  # Check GriefPrevention claims (if installed)
+  griefprevention: true
+  
+  # Check Towny plots (if installed)
+  towny: true
+  
+  # Check LandClaim permissions
+  lands: true
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    MESSAGES                                 │
+# └─────────────────────────────────────────────────────────────┘
+messages:
+  prefix: "&8[&aAetherTree&8] "
+  
+  # General messages
+  no-permission: "&cYou don't have permission to do that!"
+  plugin-disabled: "&cAetherTreeSystem is currently disabled."
+  not-a-player: "&cThis command can only be used by players!"
+  
+  # Chopping messages
+  tree-too-large: "&cThis tree is too large! &7(Max: {max} logs)"
+  not-a-tree: "&cThat doesn't appear to be a valid tree."
+  chopping-cancelled: "&cChopping cancelled."
+  axe-broke: "&cYour axe broke while chopping!"
+  
+  # Cooldown
+  cooldown-active: "&cPlease wait &f{time}s &cbefore chopping another tree."
+  
+  # Toggle
+  toggle-enabled: "&aTree feller &2enabled&a!"
+  toggle-disabled: "&cTree feller &4disabled&c."
+  
+  # Admin
+  config-reloaded: "&aConfiguration reloaded successfully!"
+  
+  # Inventory Lock [NEW v2.0]
+  inventory-locked: "&c&l⚠ &cInventory locked while chopping!"
+  
+  # Hunger [NEW v2.0]
+  too-hungry: "&c&l⚠ &cYou're too hungry to chop trees! Eat something first."
+  hunger-consumed: "&7&o-{amount} hunger consumed"
+  
+  # Stats
+  stats-header: "&8&m─────────&r &a&lYour Stats &8&m─────────"
+  stats-trees: "&7Trees chopped: &f{count}"
+  stats-logs: "&7Total logs: &f{count}"
+  stats-footer: "&8&m───────────────────────────────"
+  
+  # Help
+  help-header: "&8&m─────────&r &a&lAetherTree Help &8&m─────────"
+  help-toggle: "&a/at toggle &8- &7Toggle tree feller on/off"
+  help-stats: "&a/at stats &8- &7View your chopping stats"
+  help-reload: "&a/at reload &8- &7Reload configuration &8(Admin)"
+  help-footer: "&8&m──────────────────────────────────"

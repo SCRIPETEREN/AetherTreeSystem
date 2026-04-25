@@ -1,0 +1,54 @@
+#HELLO ME CRATOR FORM INDONESIA | YansProject
+
+# Maven build directory
+
+target/
+
+# Compiled class files
+
+*.class
+
+# Packaged files
+
+*.jar
+*.war
+*.ear
+
+# Logs
+
+*.log
+
+# IntelliJ IDEA
+
+.idea/
+*.iml
+out/
+
+# VS Code
+
+.vscode/
+
+# Eclipse
+
+.project
+.classpath
+.settings/
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# Temporary files
+
+*.tmp
+*.temp
+
+# Backup files
+
+*.bak
+*.old
+
+# GitHub
+
+*.orig
